@@ -1,0 +1,89 @@
+﻿<Window x:Class="BoundlessProxyUi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BoundlessProxyUi"
+        xmlns:control="clr-namespace:WpfHexaEditor;assembly=WPFHexaEditor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1250">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Margin="5" VerticalAlignment="Center" Grid.Column="0">Boundless:</TextBlock>
+            <TextBox Name="txtBoundless" Margin="5" Grid.Column="1">G:\Steam\steamapps\common\Boundless\boundless.exe</TextBox>
+
+            <TextBlock Margin="5" VerticalAlignment="Center" Grid.Column="2">Client CRT:</TextBlock>
+            <TextBox Name="txtCrt" Margin="5" Grid.Column="3">playboundless.crt</TextBox>
+
+            <TextBlock Margin="5" VerticalAlignment="Center" Grid.Column="4">Mitm PFX:</TextBlock>
+            <TextBox Name="txtPfx" Margin="5" Grid.Column="5">playboundless.pfx</TextBox>
+
+            <Button Width="80" Margin="5" Grid.Column="6" Name="CheckCert" Click="CheckCert_Click">Check Cert</Button>
+            <Button Width="80" Margin="5" Grid.Column="7" Click="Prep_Click">Prep</Button>
+            <Button Width="80" Margin="5" Grid.Column="8" Click="Go_Click">Go!</Button>
+            <CheckBox Grid.Column="9" VerticalAlignment="Center" Margin="5" IsChecked="{Binding CaptureEnabled}">Capture</CheckBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ListView Name="lstGroups" Margin="5" ItemsSource="{Binding Groups}" DisplayMemberPath="GroupingName" SelectedItem="{Binding SelectedGroup}" />
+            <ListView Name="lstInstances" Grid.Column="1" Margin="5" ItemsSource="{Binding SelectedGroup.Instances}" DisplayMemberPath="DisplayName" SelectedItem="{Binding SelectedInstance}" />
+            <ListView Name="lstPackets" Grid.Column="2" Margin="5" ItemsSource="{Binding SelectedInstance.Packets}" DisplayMemberPath="DisplayName" SelectionChanged="LstPackets_SelectionChanged" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.RowSpan="2">
+                <TextBlock Margin="5">Data Type:</TextBlock>
+                <ComboBox Name="cmbSearchType" Margin="5" />
+                <TextBlock Margin="5">Value:</TextBlock>
+                <TextBox Margin="5" Name="txtSearchValue" />
+                <Button Width="80" Name="btnAddSearch" Click="BtnAddSearch_Click">Add --></Button>
+            </StackPanel>
+
+            <ListView Name="lstSearches" Grid.Column="1" Margin="5" ItemsSource="{Binding Searches}" DisplayMemberPath="DisplayName" SelectedItem="{Binding SelectedSearch}"/>
+            <Button Name="btnRemoveSearch" Width="120" Margin="5" Grid.Column="1" Grid.Row="1" Click="BtnRemoveSearch_Click">Remove Selected</Button>
+
+            <ListView Grid.Column="2" Margin="5" ItemsSource="{Binding SelectedSearch.Packets}" DisplayMemberPath="DisplayName" Name="lstSearchPackets" SelectionChanged="LstSearchPackets_SelectionChanged"/>
+            <Button Grid.Column="2" Grid.Row="1" Margin="5" Width="120" Name="btnGotoPacket" Click="BtnGotoPacket_Click">Goto Packet</Button>
+        </Grid>
+
+        <control:HexEditor Grid.Row="3" Name="hexMain" Margin="5,5,5,5" BytePerLine="32"/>
+    </Grid>
+</Window>
