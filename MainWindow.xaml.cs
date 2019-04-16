@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -29,7 +30,10 @@ namespace BoundlessProxyUi
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Dispatcher Dispatcher;
+        public static bool Testing = false;
+        public static string DiscoveryServer => Testing ? "ds-testing.playboundless.com" : "ds.playboundless.com";
+
+        public static MainWindow Instance;
 
         public class MainWindowViewModel : INotifyPropertyChanged
         {
@@ -109,7 +113,7 @@ namespace BoundlessProxyUi
 
         public MainWindow()
         {
-            Dispatcher = base.Dispatcher;
+            Instance = this;
 
             InitializeComponent();
 
@@ -118,7 +122,6 @@ namespace BoundlessProxyUi
         }
 
         private ServerListAbstraction serverList = new ServerListAbstraction();
-        private Dictionary<string, IPAddress> serverLookup;
 
         public new MainWindowViewModel DataContext
         {
@@ -139,27 +142,19 @@ namespace BoundlessProxyUi
             MessageBox.Show(this, "Please ensure that your hosts file is clean (no uncommented lines), then click 'OK' to continue!\r\n\r\nThe usual place for the hosts file is \"C:\\Windows\\System32\\drivers\\etc\\hosts\"", "Reset Hosts File!", MessageBoxButton.OK);
 
             // Run IP addresses
-            JObject serverListJson;
-
-            string blah = $"https://ds.playboundless.com:8902/list-gameservers";
-
-            using (WebResponse response = WebRequest.Create(blah).GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                serverListJson = JObject.Parse(reader.ReadToEnd());
-            }
+            HttpClient client = new HttpClient();
+            var serverListJson = JArray.Parse(client.GetAsync($"https://{DiscoveryServer}:8902/list-gameservers").Result.Content.ReadAsStringAsync().Result);
 
             // Persist em
             serverList.Clear();
 
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"127.0.0.1 ds.playboundless.com");
+            sb.AppendLine($"127.0.0.1 {DiscoveryServer}");
 
-            serverList.AddServer(new ServerList { Hostname = "ds.playboundless.com", Ip = Dns.GetHostAddresses("ds.playboundless.com").First().ToString() });
+            serverList.AddServer(new ServerList { Hostname = DiscoveryServer, Ip = Dns.GetHostAddresses(DiscoveryServer).First().ToString() });
 
-            serverListJson.Cast<KeyValuePair<string, JToken>>().Select(cur => cur.Value.Value<JObject>()["addr"].Value<string>()).Distinct().ToList().ForEach(cur =>
+            serverListJson.Select(cur => cur.Value<JObject>()["addr"].Value<string>()).Distinct().ToList().ForEach(cur =>
             {
                 sb.AppendLine($"127.0.0.1 {cur}");
                 IPAddress entry = Dns.GetHostAddresses(cur).First();

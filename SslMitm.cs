@@ -88,7 +88,7 @@ namespace BoundlessProxyUi
                 var serverSecureStream = new SslStream(serverStream, false, (a, b, c, d) => true);
                 serverSecureStream.AuthenticateAsClient(remoteHost);
 
-                MainWindow.Dispatcher.BeginInvoke(new Action(() =>
+                MainWindow.Instance.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     ConnectionInstance instanceModel = new ConnectionInstance()
                     {

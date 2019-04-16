@@ -123,7 +123,7 @@ namespace BoundlessProxyUi
             {
                 byte[] saveData = buffer.Take(count).ToArray();
 
-                MainWindow.Dispatcher.BeginInvoke(new Action(() =>
+                MainWindow.Instance.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     var packet = new CommPacket
                     {
