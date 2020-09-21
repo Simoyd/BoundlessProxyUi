@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="BoundlessProxyUi.ProxyManager.GamePath"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoundlessProxyUi.ProxyManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="502" d:DesignWidth="384" Background="White">
+    <Grid Margin="0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock FontSize="24" TextAlignment="Center">Setup Boundless Location</TextBlock>
+            <TextBlock FontSize="18" TextAlignment="Center" TextWrapping="Wrap" Name="txtMessage">This is a test message.</TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,60" TextAlignment="Center" Grid.ColumnSpan="2">For this app to work, it needs to modify the ca-bundle.crt file (reasoning explained on next page before it is modified) in the game directory.</TextBlock>
+            
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="1" Margin="5">Please specify the full name and path of your boundless.exe file:</TextBlock>
+            <TextBox Grid.Row="2" Margin="5" Text="{Binding GamePath}" />
+            <Button Name="btnBrowse" Grid.Row="2" Grid.Column="1" Width="80" Margin="5" Click="BtnBrowse_Click">Browse...</Button>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="btnContinue" IsDefault="True" Width="80" Padding="2" Margin="5" Click="BtnContinue_Click">Continue</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

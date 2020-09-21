@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoundlessProxyUi", "BoundlessProxyUi.csproj", "{B5F2A569-0FB1-490D-87F8-4AB45A746C71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoundlessProxyUi", "BoundlessProxyUi\BoundlessProxyUi.csproj", "{B5F2A569-0FB1-490D-87F8-4AB45A746C71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Debug|x64.ActiveCfg = Debug|x64
+		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Debug|x64.Build.0 = Debug|x64
+		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Release|x64.ActiveCfg = Release|x64
+		{B5F2A569-0FB1-490D-87F8-4AB45A746C71}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {04A356B7-E5BE-4A31-A276-F95FA9BA8CDC}
+		SolutionGuid = {4570B80E-528E-4630-BBB7-D1FC899A0697}
 	EndGlobalSection
 EndGlobal

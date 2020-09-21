@@ -1,0 +1,29 @@
+﻿<Window x:Class="BoundlessProxyUi.JsonUpload.JsonUploadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BoundlessProxyUi.JsonUpload"
+        mc:Ignorable="d"
+        Title="JsonUploadWindow" Height="133" Width="477" ResizeMode="CanMinimize" Closed="Window_Closed">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="5" Grid.Row="0" Grid.Column="0" TextAlignment="Right">Save planet JSON to disk:</TextBlock>
+        <CheckBox Name="chkFile" Margin="5" Grid.Row="0" Grid.Column="1" IsChecked="{Binding JsonSaveFile}" />
+
+        <TextBlock Margin="5" Grid.Row="1" Grid.Column="0" TextAlignment="Right">Upload planet JSON to api.boundlexx.app:</TextBlock>
+        <CheckBox Name="chkApi" Margin="5" Grid.Row="1" Grid.Column="1" IsChecked="{Binding JsonSaveApi}" />
+
+        <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" TextAlignment="Right">api.boundlexx.app API key:</TextBlock>
+        <TextBox x:Name="txtApiKey" Margin="5" Grid.Row="2" Grid.Column="1" MinWidth="200" Text="{Binding JsonApiKey}" />
+    </Grid>
+</Window>

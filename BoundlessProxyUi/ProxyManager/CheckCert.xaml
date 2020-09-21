@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="BoundlessProxyUi.ProxyManager.CheckCert"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoundlessProxyUi.ProxyManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="502" d:DesignWidth="384" Background="White">
+    <Grid Margin="0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock FontSize="24" TextAlignment="Center">Setup Certificate Bundle</TextBlock>
+            <TextBlock FontSize="18" TextAlignment="Center" TextWrapping="Wrap" Name="txtMessage">This is a test message.</TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,30">To get Boundless to connect to this application successfully, this app needs to modify the ca-bundle.crt file in the boundless game directory. This file contains the server certificates that are trusted by the game. It needs to be modified to add the certificates from this application, so that the game allows the connection. By clicking continue, you are allowing this application to modify the ca-bundle.crt file.</TextBlock>
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Grid.Row="2" >WARNING: This app does not verify certificate on outgoing connections at this time. This means there is an increased vulnurability to MITM attacks between this app and the Boundless servers. By clicking continue, you understand and accept the risks.</TextBlock>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="btnContinue" IsDefault="True" Width="80" Padding="2" Margin="5" Click="BtnContinue_Click">Continue</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

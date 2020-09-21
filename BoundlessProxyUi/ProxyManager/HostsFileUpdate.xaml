@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="BoundlessProxyUi.ProxyManager.HostsFileUpdate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoundlessProxyUi.ProxyManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="502" d:DesignWidth="384" Background="White">
+    <Grid Margin="0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock FontSize="24" TextAlignment="Center">Setup Hosts File</TextBlock>
+            <TextBlock FontSize="18" TextAlignment="Center" TextWrapping="Wrap" Name="txtMessage">This is a test message.</TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock TextWrapping="Wrap">Additional entries are required in your hosts file for this application to work. Please add the following entries and click continue.</TextBlock>
+            <TextBox Name="txtAddItems" Grid.Row="1" Margin="0,20,0,20" Height="160" IsReadOnly="True" />
+            <TextBlock TextWrapping="Wrap" Grid.Row="2" Name="txtHostsFileLocation">Your hosts file should be located here:</TextBlock>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="btnContinue" IsDefault="True" Width="80" Padding="2" Margin="5" Click="BtnContinue_Click">Continue</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

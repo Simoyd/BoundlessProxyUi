@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="BoundlessProxyUi.ProxyManager.Running"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoundlessProxyUi.ProxyManager"
+             xmlns:pcg="clr-namespace:BoundlessProxyUi"
+             mc:Ignorable="d" 
+             d:DesignHeight="502" d:DesignWidth="384" Background="White" Loaded="UserControl_Loaded">
+    <Grid Margin="0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock FontSize="24" TextAlignment="Center">Boundless Proxy Manager</TextBlock>
+        </StackPanel>
+
+        <TextBlock HorizontalAlignment="Center" Margin="5" FontSize="18" Grid.Row="1" VerticalAlignment="Center" >Running!</TextBlock>
+    </Grid>
+</UserControl>
+
